@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 def makeImage(count, size, name):
-    print "make %d image (%dx%d)" % (count, size[0], size[1])
+    print('make {} image ({}x{})'.format(count, size[0], size[1]))
 
     font = ImageFont.truetype(
         font='RobotoSlab-Bold.ttf',
@@ -19,8 +19,8 @@ def makeImage(count, size, name):
 
     for i in range(1, count + 1):
         filename = '{}/{}_{:03d}.jpg'.format(outputDir, name, i)
-        
-        print "make %s" % (filename)
+
+        print("make {}".format(filename))
         text = str(i)
         im = Image.new(mode = 'RGB', size = size, color=(255,255,255))
         draw = ImageDraw.Draw(im)
