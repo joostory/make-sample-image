@@ -16,10 +16,13 @@ $ pip install Pillow
 Usage: make-sample-image.py [options] count
 
 Options:
-  -h, --help       show this help message and exit
-  --prefix=PREFIX  filename prefix
-  --ext=EXT        file ext ('png', 'jpg', 'gif')
-  --output=OUTPUT  output dir
-  --width=WIDTH    image width
-  --height=HEIGHT  image height
+  -h, --help            show this help message and exit
+  --prefix=PREFIX       filename prefix
+  --ext=EXT             file ext ('png', 'jpg', 'gif')
+  --output=OUTPUT       output dir
+  --width=WIDTH         image width
+  --height=HEIGHT       image height
+  --background=BACKGROUND
+                        background color
+  --color=COLOR         text color
 ```

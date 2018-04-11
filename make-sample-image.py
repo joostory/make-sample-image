@@ -5,12 +5,14 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 class ImageMaker:
-    def __init__(self, count, size, prefix, output, ext):
+    def __init__(self, count, size, prefix, output, ext, background, color):
         self.count = count
         self.size = size
         self.prefix = prefix
         self.output = output
         self.ext = ext
+        self.background = background
+        self.color = color
     
     def prepareOutputDir(self):
         if not os.path.exists(self.output):
@@ -35,13 +37,13 @@ class ImageMaker:
 
             print('make {}'.format(filename))
             text = str(i)
-            im = Image.new(mode = 'RGB', size = self.size, color=(255,255,255))
+            im = Image.new(mode = 'RGB', size = self.size, color=self.background)
             draw = ImageDraw.Draw(im)
             w, h = draw.textsize(text, font)
             draw.text(
                 xy = ((width - w) / 2, (height - h) / 2),
                 text = text,
-                fill = (0,0,0),
+                fill = self.color,
                 font = font
             )
             im.save(filename)    
@@ -55,6 +57,8 @@ def main():
     parser.add_option('--output', type='string', default='output', help='output dir')
     parser.add_option('--width', type='int', default=600, help='image width')
     parser.add_option('--height', type='int', default=600, help='image height')
+    parser.add_option('--background', type='string', default='white', help='background color')
+    parser.add_option('--color', type='string', default='black', help='text color')
 
     (options, args) = parser.parse_args()
     if len(args) != 1:
@@ -65,7 +69,9 @@ def main():
         size = (options.width, options.height),
         prefix = options.prefix,
         output = options.output,
-        ext = options.ext
+        ext = options.ext,
+        background = options.background,
+        color = options.color
     )
     imageMaker.make()
 
